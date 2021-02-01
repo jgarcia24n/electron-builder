@@ -299,7 +299,7 @@ Please double check that your authentication token is correct. Due to security r
     const headers = newOptions.headers
     if (headers != null && headers.authorization != null && (headers.authorization as string).startsWith("token")) {
       const parsedNewUrl = new URL(redirectUrl)
-      if (parsedNewUrl.hostname.endsWith(".amazonaws.com")) {
+      if (parsedNewUrl.hostname.endsWith(".amazonaws.com") || parsedNewUrl.searchParams.has("X-Amz-Credential")) {
         delete headers.authorization
       }
     }
